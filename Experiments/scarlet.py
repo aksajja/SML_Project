@@ -9,7 +9,7 @@ Original file is located at
 import copy
 import numpy as np
 from numpy.linalg import norm
-import matplotlib.pyplot as plt
+from utils import plot_error_vs_samples
 np.random.seed((3,14159))
 
 
@@ -170,19 +170,6 @@ def compute_thresholded_sup_prec_mat(min_non_norm_wts):
 
   return sup_prec_mat
 
-def plot_error_vs_samples(error,samples,num_nodes):
-  import matplotlib.pyplot as plt
-  fig = plt.figure(dpi=100, figsize=(14, 7))
-  rows = int(len(samples)**0.5)
-  ax = fig.add_subplot(111)
-  ax.plot(samples, error)
-
-  ax.set(xlabel='Samples', ylabel='Error',
-        title=f'Scarlet Error vs Samples - {num_nodes} nodes')
-  ax.grid()
-  plt.show()
-  plt.savefig(f'../results/Scarlet_Error_vs_Samples_{num_nodes}.png')
-
 """ 
 From Lemma 2 in the Paper:
 First we have X = (x_1,...,x_p) and a inv_cov_mat. X is zero-mean.
@@ -190,17 +177,7 @@ In addition to X and cov_mat, we also have -
 T_samples = (X1,...,XT) that are independent and have the same distribution as X.
 So T_samples ----> (x_t,y_t) need to be normalized and passed to Sparsitron.
 """
-def main():
-  # Initializing hyper parameters.
-  # T = 3200  #T ---> Number of training samples
-  # M = 800
-  # T = 200  #T ---> Number of training samples
-  # M = 40
-  # num_nodes = 20 
-  # num_obs = 300   # Used to generate the Gaussian covariace matrix.
-  candidate_num_nodes = [10,20,30]
-  candidate_Ts = [1000,5000,10000]
-  # candidate_Ts = [100,500,1000]
+def exp_scarlet(candidate_num_nodes = [10,20,30],candidate_Ts = [100,500,1000]):
   for num_nodes in candidate_num_nodes:
     errors = []
     for T in candidate_Ts:
@@ -234,17 +211,5 @@ def main():
       sup_prec_mat = compute_thresholded_sup_prec_mat(min_non_norm_wts)
       
       errors.append(test_error(sup_prec_mat,true_adj_mat))
-    plot_error_vs_samples(errors,candidate_Ts,num_nodes)
+    plot_error_vs_samples('Scarlet',errors,candidate_Ts,num_nodes)
       
-
-if __name__ == "__main__":
-  import argparse
-
-  parser = argparse.ArgumentParser(description='Process some integers.')
-  parser.add_argument('integers', metavar='N', type=int, nargs='+',
-                      help='an integer for the accumulator')
-
-  args = parser.parse_args()
-  # print(args.integers[0],args.integers[1],args.integers[2])
-  # main(args.integers[0],args.integers[1],args.integers[2],args.integers[3])
-  main()

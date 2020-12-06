@@ -37,6 +37,6 @@ Sigma.chol = chol(Sigma)
 X = matrix(rnorm(n * p), n) %*% Sigma.chol
 # Known graphical information: adjacent matrix
 Adj = 1*(Omega!=0 )
-cat('Sparsity of adj mat is: ',nnzero(Adj)/(p**2), '\n')
+cat('For ',p,' nodes ',n, ' samples ', ' -- sparsity of adj mat is: ',nnzero(Adj)/(p**2), '\n')
 write.matrix(Sigma,'../data/cov_mat.csv',',')
 write.matrix(Adj,'../data/adj_mat.csv',',')
