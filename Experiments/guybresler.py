@@ -119,13 +119,7 @@ def learn_neighborhood(node_u,p,sample_set,tau):
 def compute_error(label,pred):
   return np.count_nonzero(label!=pred)/label.shape[0]**2
 
-def exp_guybresler():
-  num_nodes = [10,20,30]     # Number of nodes.
-  num_samples = [200,500,1000]
-  zeta = 0.05 # Confidence bound.
-  # max_h = None
-  alpha = 0.1
-  beta = 0.5
+def exp_guybresler(num_nodes, num_samples, zeta, alpha, beta):
 
   for p in num_nodes:
     errors = []
