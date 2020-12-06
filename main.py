@@ -1,5 +1,5 @@
-from scarlet import exp_scarlet
-from guybresler import exp_guybresler
+from Experiments.scarlet import exp_scarlet
+from Experiments.guybresler import exp_guybresler
 
 if __name__ == "__main__":
   import argparse

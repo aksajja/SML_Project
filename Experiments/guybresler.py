@@ -10,7 +10,7 @@ Original file is located at
 import numpy as np
 import pandas as pd
 import math
-from sampling_from_ising import ising_samples
+from Experiments.sampling_from_ising import ising_samples
 from utils import plot_error_vs_samples
 
 def compute_num_samples_needed(p, zeta, max_deg, max_h, alpha, beta):
@@ -147,4 +147,4 @@ def exp_guybresler():
       err = compute_error(theta,pred_prec_mat)
       print(f'Sample complexity bound holds? Pred_err:{err}, Zeta:{zeta} ')
       errors.append(err)
-    plot_error_vs_samples('GB',errors,num_samples,num_nodes)
+    plot_error_vs_samples('GB',errors,num_samples,p)

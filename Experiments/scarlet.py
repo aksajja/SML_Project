@@ -18,7 +18,7 @@ def generate_psd_cov_mat(num_nodes,num_obs,using_R=True,force=False):
     import subprocess
     import pandas as pd
     from os import path
-    if not path.exists('../data/cov_mat.csv') or force:    
+    if not path.exists('data/cov_mat.csv') or force:    
       subprocess.check_call(['/usr/bin/Rscript', \
           '--vanilla', \
           'ggm.R', \
@@ -26,9 +26,9 @@ def generate_psd_cov_mat(num_nodes,num_obs,using_R=True,force=False):
           f'{num_nodes}', \
           f'{num_obs}'], shell=False)
     cov_mat = None
-    cov_mat_df = pd.read_csv('../data/cov_mat.csv', header=None)
+    cov_mat_df = pd.read_csv('data/cov_mat.csv', header=None)
     cov_mat = cov_mat_df.to_numpy()
-    adj_mat_df = pd.read_csv('../data/adj_mat.csv', header=None)
+    adj_mat_df = pd.read_csv('data/adj_mat.csv', header=None)
     adj_mat = adj_mat_df.to_numpy()
 
     assert is_invertible(cov_mat)==True
