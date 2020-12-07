@@ -1,5 +1,6 @@
 from Experiments.scarlet import exp_scarlet
 from Experiments.guybresler import exp_guybresler
+from Experiments.misra import exp_misra
 
 if __name__ == "__main__":
   import argparse
@@ -19,7 +20,10 @@ if __name__ == "__main__":
   # exp_scarlet(args.integers[0],args.integers[1],args.integers[2],args.integers[3])
   # exp_scarlet(num_nodes, num_samples)
 
+  # Misra
+  # exp_misra(num_nodes,num_samples,zeta)
+
   # Guy Bresler
-  alpha = 0.1
-  beta = 0.5
-  exp_guybresler(num_nodes, num_samples, zeta, alpha, beta)
+  # alpha = 0.1
+  # beta = 0.5
+  # exp_guybresler(num_nodes, num_samples, zeta, alpha, beta)

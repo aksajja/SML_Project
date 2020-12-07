@@ -17,7 +17,7 @@ def generate_psd_cov_mat(num_nodes,num_obs,using_R=True,force=True):
     if not path.exists('data/cov_mat.csv') or force:    
       subprocess.check_call(['/usr/bin/Rscript', \
           '--vanilla', \
-          'ggm.R', \
+          'Experiments/ggm.R', \
           '--args', \
           f'{num_nodes}', \
           f'{num_obs}'], shell=False)
