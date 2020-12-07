@@ -74,7 +74,6 @@ def compute_optimal_conditional_var(x_samples, max_deg):
       candidate_conditional_vars.append(compute_conditional_var(_combo, node_i, emp_matrix, x_samples))
     candidate_conditional_variance = min(candidate_conditional_vars)
     conditional_vars.append(1/candidate_conditional_variance)
-  print(f'Num_nodes: {num_nodes}, conditional_vars: {conditional_vars}')
 
   return conditional_vars
 
